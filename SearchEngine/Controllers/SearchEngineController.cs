@@ -58,56 +58,6 @@ namespace SearchEngine.Controllers
             await Task.Run(() => linkPosition.AddKeyWord(keyword));
         }
 
-        //this is the old web crawler using HtmlAgilityPack
-        [HttpGet]
-        [Route("getLinks")]
-        public async Task<List<string>> GetLinksFromUrl([FromHeader] string url)
-        {
-            var listOfLinks = new List<string>();
-            var client = new HttpClient();
-
-            try
-            {
-                var html = await client.GetStringAsync(url);
-                if (html == null)
-                {
-                    listOfLinks.Add("Link could NOT be crawled");
-                    return listOfLinks;
-                }
-
-                var htmlDoc = new HtmlDocument();
-                htmlDoc.LoadHtml(html);
-
-                var links = htmlDoc.DocumentNode.SelectNodes("//a[@href]");
-
-
-                if (links != null)
-                {
-                    foreach (var l in links)
-                    {
-                        string link = l.Attributes["href"].Value;
-                        if (link.Contains("http"))
-                        {
-                            listOfLinks.Add(link);
-
-                        }
-                    }
-                    return listOfLinks;
-                }
-                else
-                {
-                    listOfLinks.Add("Link list was empty");
-                    return listOfLinks;
-                }
-            }
-            catch (Exception e)
-            {
-                if (e is ArgumentNullException || e is HttpRequestException)
-                    Console.WriteLine(e.Message);
-            }
-            listOfLinks.Add("Link could NOT be crawled");
-            return listOfLinks;
-        }
 
         //new web crawler using Regex
         [HttpGet]

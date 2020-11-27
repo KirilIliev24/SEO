@@ -8000,11 +8000,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Administrator\\Kiril\\repos\\SearchEngine\\SearchEngine.csproj",
+      "projectUniqueName": "C:\\Users\\Administrator\\Kiril\\repos\\SEO\\SearchEngine\\SearchEngine.csproj",
       "projectName": "SearchEngine",
-      "projectPath": "C:\\Users\\Administrator\\Kiril\\repos\\SearchEngine\\SearchEngine.csproj",
+      "projectPath": "C:\\Users\\Administrator\\Kiril\\repos\\SEO\\SearchEngine\\SearchEngine.csproj",
       "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Administrator\\Kiril\\repos\\SearchEngine\\obj\\publish\\win-x64\\",
+      "outputPath": "C:\\Users\\Administrator\\Kiril\\repos\\SEO\\SearchEngine\\obj\\publish\\win-x64\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",

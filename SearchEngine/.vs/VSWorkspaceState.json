@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Controllers",
+    "\\DataBase",
+    "\\DataBase\\Model",
+    "\\Model"
+  ],
+  "SelectedNode": "\\DataBase\\SearchEngineContext.cs",
+  "PreviewInSolutionExplorer": false
+}

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "X4jyM7LM4NNzRfBfRdWCqqLntQqvu57zzRh2NGi5Wy9I17EWnhEIXp8gC5jtlU/O6CzQPtaPfKSw4fK64hlRow==",
+  "dgSpecHash": "Czvx8bdpQK36cW6mfvqxu4sVIcIRHdeIFxiYuu+kHILBp2YzXhlDK1H1EOY3w+892uDbvQwpHINP2LFBZi+3Gg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Administrator\\Kiril\\repos\\SearchEngine\\SearchEngine.csproj",
+  "projectFilePath": "C:\\Users\\Administrator\\Kiril\\repos\\SEO\\SearchEngine\\SearchEngine.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrator\\.nuget\\packages\\htmlagilitypack\\1.11.24\\htmlagilitypack.1.11.24.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

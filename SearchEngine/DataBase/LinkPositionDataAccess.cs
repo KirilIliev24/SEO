@@ -112,8 +112,6 @@ namespace SearchEngine.DataBase
             List<DateAndPosition> list = new List<DateAndPosition>();
             using (var context = new SearchEngineContext())
             {
-                //var positions = context.PositonAndDates.Where(p => p.Link.Equals(link) && p.Keywords.Equals(keywords)).Select(p => p.Position).ToArray();
-                //var dates = context.PositonAndDates.Where(p => p.Link.Equals(link) && p.Keywords.Equals(keywords)).Select(p => p.Date).ToArray();
                 var everything = context.PositonAndDates.Where(p => p.Link.Equals(link) && p.Keywords.Equals(keywords)).Select(p => p).ToArray();
                 for (int i = 0; i < everything.Length; i++)
                 {
@@ -138,7 +136,7 @@ namespace SearchEngine.DataBase
             List<string> endResult = new List<string>();
             using (var context = new SearchEngineContext())
             {
-                if (linkTwo.Equals(string.Empty) || linkTwo == null)
+                if (linkTwo == null || linkTwo.Equals(string.Empty) || linkTwo.Equals(""))
                 {
                     int linkId = context.LinkDetails.Where(p => p.Link.Equals(link)).Select(p => p.Id).FirstOrDefault();
                     var extLinkList = context.ExternalLinks.Where(p => p.Id == linkId && p.date.Date == date.Date).Select(p => p.externalLink).ToList();

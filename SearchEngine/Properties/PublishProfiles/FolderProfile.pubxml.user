@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\PublishWebApi</_PublishTargetUrl>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Data Source=%28localdb%29\MSSQLLocalDB%3bInitial Catalog=C:\USERS\ADMINISTRATOR\KIRIL\SEARCHENGINE.MDF%3bIntegrated Security=True%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="SearchEngine.DataBase.SearchEngineContext">
+      <Value>Data Source=%28localdb%29\MSSQLLocalDB%3bInitial Catalog=C:\USERS\ADMINISTRATOR\KIRIL\SEARCHENGINE.MDF%3bIntegrated Security=True%3b</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

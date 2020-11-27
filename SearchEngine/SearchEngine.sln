@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchEngine", "SearchEngine.csproj", "{EEC57580-95C2-44BB-80A1-E7E1CDB6FBE1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchEngineUI", "..\SearchEngineUI\SearchEngineUI.csproj", "{67DD7965-0965-4223-9479-EA464CB83AB9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EEC57580-95C2-44BB-80A1-E7E1CDB6FBE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEC57580-95C2-44BB-80A1-E7E1CDB6FBE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEC57580-95C2-44BB-80A1-E7E1CDB6FBE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEC57580-95C2-44BB-80A1-E7E1CDB6FBE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67DD7965-0965-4223-9479-EA464CB83AB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67DD7965-0965-4223-9479-EA464CB83AB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67DD7965-0965-4223-9479-EA464CB83AB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67DD7965-0965-4223-9479-EA464CB83AB9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A11B20AB-0D0D-404B-B7D6-0FBB31FC35B3}
+	EndGlobalSection
+EndGlobal

@@ -29,9 +29,16 @@ namespace SearchEngine.Controllers
 
         [HttpGet]
         [Route("getByKeyword/{keyword}")]
-        public async Task<ActionResult<IEnumerable<Result>>> GetLinks(string keyword)
+        public async Task<ActionResult<IEnumerable<Result>>> GetLinks(string keyword, [FromHeader] DateTime startDate, [FromHeader] DateTime endDate)
         {
-            var links = await Task.Run(() => linkPosition.GetLinksByKeyWord(keyword));
+            if (startDate == null && endDate == null)
+            {
+                startDate = new DateTime(2000, 1, 1);
+                endDate = DateTime.Now;
+                var allLinks = await Task.Run(() => linkPosition.GetLinksByKeyWord(keyword, startDate, endDate));
+                return allLinks;
+            }
+            var links = await Task.Run(() => linkPosition.GetLinksByKeyWord(keyword, startDate, endDate));
             return links;
         }
 

@@ -58,7 +58,7 @@ namespace SearchEngine.DataBase
             }
         }
 
-        public List<Result> GetLinksByKeyWord(string keyWords)
+        public List<Result> GetLinksByKeyWord(string keyWords, DateTime startDate, DateTime endDate)
         {
             HashSet<Result> uniqueResults = new HashSet<Result>(new ResultComparer());
             bool done = false;
@@ -70,7 +70,9 @@ namespace SearchEngine.DataBase
                     {
                         var resultsFromPos = context.PositonAndDates.Where(r => r.Keywords.Equals(keyWords)).ToArray();
 
-                        foreach (var r in resultsFromPos)
+                        var resultInDatePeriod = resultsFromPos.Where(r => r.Date.Date >= startDate.Date && r.Date.Date <= endDate.Date).ToArray();
+
+                        foreach (var r in resultInDatePeriod)
                         {
                             var resultFromLinkDet = context.LinkDetails.Where(p => p.Link.Equals(r.Link)).FirstOrDefault();
                             uniqueResults.Add(new Result()

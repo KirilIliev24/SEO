@@ -176,6 +176,23 @@ namespace SearchEngine.DataBase
                             }
                         }
                     }
+                    if (extLinkListOne.Contains(linkTwo))
+                    {
+                        endResult.Add("Link ONE contains link TWO");
+                    }
+                    else 
+                    {
+                        endResult.Add("Link one does NOT contain link two");
+                    }
+
+                    if (extLinkListTwo.Contains(link))
+                    {
+                        endResult.Add("Link TWO contains link ONE");
+                    }
+                    else
+                    {
+                        endResult.Add("Link two does NOT contain link one");
+                    }
                     return endResult;
                 }
                 

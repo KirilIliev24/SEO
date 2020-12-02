@@ -21,6 +21,7 @@ namespace SearchEngine.DataBase
         public DbSet<LinkDetails> LinkDetails { get; set; }
         public DbSet<Keywords> Keywords { get; set; }
         public DbSet<ExternalLinks> ExternalLinks { get; set; }
+        public DbSet<KeywordsInMeaningfulText> KeywordsInText { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {

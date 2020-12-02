@@ -98,7 +98,7 @@ namespace SearchEngine.Controllers
 
         [HttpGet]
         [Route("getMeaningfulText")]
-        public async Task<string> GetMeaningfulText([FromHeader] string url, [FromHeader] DateTime date)
+        public async Task<List<MeaningfulText>> GetMeaningfulText([FromHeader] string url, [FromHeader] DateTime date)
         {
             var externalLinks = await Task.Run(() => linkPosition.getMeaningfulText(url, date));
             return externalLinks;

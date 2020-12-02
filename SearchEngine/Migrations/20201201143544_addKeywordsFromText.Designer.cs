@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SearchEngine.DataBase;
 
 namespace SearchEngine.Migrations
 {
     [DbContext(typeof(SearchEngineContext))]
-    partial class SearchEngineContextModelSnapshot : ModelSnapshot
+    [Migration("20201201143544_addKeywordsFromText")]
+    partial class addKeywordsFromText
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,10 +68,7 @@ namespace SearchEngine.Migrations
                     b.Property<string>("keyword")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("keywordsInMetaTags")
-                        .HasColumnType("int");
-
-                    b.Property<int>("keywordsInText")
+                    b.Property<int>("noOfKeywords")
                         .HasColumnType("int");
 
                     b.HasKey("IDOfKMT");

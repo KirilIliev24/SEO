@@ -141,3 +141,54 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201201143544_addKeywordsFromText')
+BEGIN
+    CREATE TABLE [KeywordsInText] (
+        [IDOfKMT] int NOT NULL IDENTITY,
+        [Id] int NOT NULL,
+        [date] datetime2 NOT NULL,
+        [keyword] nvarchar(max) NULL,
+        [noOfKeywords] int NOT NULL,
+        CONSTRAINT [PK_KeywordsInText] PRIMARY KEY ([IDOfKMT])
+    );
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201201143544_addKeywordsFromText')
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20201201143544_addKeywordsFromText', N'5.0.0');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201202121914_addedNumberInTags')
+BEGIN
+    EXEC sp_rename N'[KeywordsInText].[noOfKeywords]', N'keywordsInText', N'COLUMN';
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201202121914_addedNumberInTags')
+BEGIN
+    ALTER TABLE [KeywordsInText] ADD [keywordsInMetaTags] int NOT NULL DEFAULT 0;
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201202121914_addedNumberInTags')
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20201202121914_addedNumberInTags', N'5.0.0');
+END;
+GO
+
+COMMIT;
+GO
+

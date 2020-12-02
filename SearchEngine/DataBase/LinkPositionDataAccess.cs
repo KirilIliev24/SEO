@@ -199,16 +199,47 @@ namespace SearchEngine.DataBase
             }
         }
 
-        public string getMeaningfulText(string link, DateTime dateTime)
+        public List<MeaningfulText> getMeaningfulText(string link, DateTime dateTime)
         {
+            var results = new List<MeaningfulText>();
+            string text = "";
+
             using (var context = new SearchEngineContext())
             {
-                string text = context.PositonAndDates.Where(p => p.Link.Equals(link) && p.Date.Date == dateTime.Date).Select(p => p.MeaningfulText).FirstOrDefault();
-                if (text.Equals(string.Empty) || text == null)
+                try
                 {
-                    return "No text found for that day";
+                    text = context.PositonAndDates.Where(p => p.Link.Equals(link) && p.Date.Date == dateTime.Date).Select(p => p.MeaningfulText).FirstOrDefault();
+
+                    if (text == null)
+                    {
+                        text = "";
+                    }
+
+                    int linkId = context.LinkDetails.Where(p => p.Link.Equals(link)).Select(p => p.Id).FirstOrDefault();
+                    var keywords = context.KeywordsInText.Where(p => p.Id == linkId && p.date.Date == dateTime.Date).Select(p => p.keyword).ToList();
+
+                    foreach (var s in keywords)
+                    {
+                        int keywordsIntext = context.KeywordsInText.Where(p => p.Id == linkId && p.date.Date == dateTime.Date && p.keyword.Equals(s)).Select(p => p.keywordsInText).FirstOrDefault();
+                        int keywordsInTags = context.KeywordsInText.Where(p => p.Id == linkId && p.date.Date == dateTime.Date && p.keyword.Equals(s)).Select(p => p.keywordsInMetaTags).FirstOrDefault();
+
+                        var textClass = new MeaningfulText()
+                        {
+                            Text = text,
+                            Keyword = s,
+                            KeywordsInText = keywordsIntext,
+                            KeywordsInMetaTags = keywordsInTags
+                        };
+                        results.Add(textClass);
+                    }
+                    return results;
                 }
-                return text;
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine(e.InnerException);
+                }
+                return results;
             }
         }
     }

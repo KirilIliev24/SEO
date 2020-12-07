@@ -140,62 +140,81 @@ namespace SearchEngine.DataBase
             {
                 if (linkTwo == null || linkTwo.Equals(string.Empty) || linkTwo.Equals(""))
                 {
-                    int linkId = context.LinkDetails.Where(p => p.Link.Equals(link)).Select(p => p.Id).FirstOrDefault();
-                    var extLinkList = context.ExternalLinks.Where(p => p.Id == linkId && p.date.Date == date.Date).Select(p => p.externalLink).ToList();
-                    if (extLinkList.Count == 0)
+                    try
                     {
-                        extLinkList.Add("List was empty or link could not be crawled");
+                        int linkId = context.LinkDetails.Where(p => p.Link.Equals(link)).Select(p => p.Id).FirstOrDefault();
+                        var extLinkList = context.ExternalLinks.Where(p => p.Id == linkId && p.date.Date == date.Date).Select(p => p.externalLink).ToList();
+                        if (extLinkList.Count == 0)
+                        {
+                            extLinkList.Add("List was empty or link could not be crawled");
+                            return extLinkList;
+                        }
                         return extLinkList;
                     }
-                    return extLinkList;
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.WriteLine(e.InnerException);
+                        endResult.Add("Something went wrong, try with a different date");
+                        return endResult;
+                    }
                 }
                 else
                 {
-                    int linkIdOne = context.LinkDetails.Where(p => p.Link.Equals(link)).Select(p => p.Id).FirstOrDefault();
-                    int linkIdTwo = context.LinkDetails.Where(p => p.Link.Equals(linkTwo)).Select(p => p.Id).FirstOrDefault();
-                    var extLinkListOne = context.ExternalLinks.Where(p => p.Id == linkIdOne && p.date.Date == date.Date).Select(p => p.externalLink).ToList();
-                    var extLinkListTwo = context.ExternalLinks.Where(p => p.Id == linkIdTwo && p.date.Date == date.Date).Select(p => p.externalLink).ToList();
+                    try
+                    {
+                        int linkIdOne = context.LinkDetails.Where(p => p.Link.Equals(link)).Select(p => p.Id).FirstOrDefault();
+                        int linkIdTwo = context.LinkDetails.Where(p => p.Link.Equals(linkTwo)).Select(p => p.Id).FirstOrDefault();
+                        var extLinkListOne = context.ExternalLinks.Where(p => p.Id == linkIdOne && p.date.Date == date.Date).Select(p => p.externalLink).ToList();
+                        var extLinkListTwo = context.ExternalLinks.Where(p => p.Id == linkIdTwo && p.date.Date == date.Date).Select(p => p.externalLink).ToList();
 
-                    if (extLinkListOne.Count == 0)
-                    {
-                        extLinkListOne.Add("First list was empty or link could not be crawled");
-                        return extLinkListOne;
-                    }
-                    else if (extLinkListTwo.Count == 0)
-                    {
-                        extLinkListTwo.Add("No links found for second list");
-                        return extLinkListTwo;
-                    }
-                    else
-                    {
-                        foreach (string s in extLinkListOne)
+                        if (extLinkListOne.Count == 0)
                         {
-                            if (extLinkListTwo.Contains(s))
+                            extLinkListOne.Add("First list was empty or link could not be crawled");
+                            return extLinkListOne;
+                        }
+                        else if (extLinkListTwo.Count == 0)
+                        {
+                            extLinkListTwo.Add("No links found for second list");
+                            return extLinkListTwo;
+                        }
+                        else
+                        {
+                            foreach (string s in extLinkListOne)
                             {
-                                endResult.Add(s);
+                                if (extLinkListTwo.Contains(s))
+                                {
+                                    endResult.Add(s);
+                                }
                             }
                         }
-                    }
-                    if (extLinkListOne.Contains(linkTwo))
-                    {
-                        endResult.Add("Link ONE contains link TWO");
-                    }
-                    else 
-                    {
-                        endResult.Add("Link one does NOT contain link two");
-                    }
+                        if (extLinkListOne.Contains(linkTwo))
+                        {
+                            endResult.Add("Link ONE contains link TWO");
+                        }
+                        else
+                        {
+                            endResult.Add("Link one does NOT contain link two");
+                        }
 
-                    if (extLinkListTwo.Contains(link))
-                    {
-                        endResult.Add("Link TWO contains link ONE");
+                        if (extLinkListTwo.Contains(link))
+                        {
+                            endResult.Add("Link TWO contains link ONE");
+                        }
+                        else
+                        {
+                            endResult.Add("Link two does NOT contain link one");
+                        }
+                        return endResult;
                     }
-                    else
+                    catch (Exception e)
                     {
-                        endResult.Add("Link two does NOT contain link one");
+                        Console.WriteLine(e.Message);
+                        Console.WriteLine(e.InnerException);
+                        endResult.Add("Something went wrong, try with a different date");
+                        return endResult;
                     }
-                    return endResult;
                 }
-                
             }
         }
 
